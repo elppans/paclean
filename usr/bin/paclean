@@ -1,0 +1,16 @@
+#!/bin/bash
+# pacod - Optional dependency helper for pacman
+# Copyright (c) 2026 Elppans
+# Licensed under the MIT License.
+# See LICENSE file for details.
+
+if [ "$EUID" -ne 0 ]; then
+	echo "Error: This script must be run as superuser (root)."
+	exit 1
+fi
+
+if pacman -Qtdq ; then
+	pacman -Rns $(pacman -Qtdq)
+else
+	echo "Sistema limpo!"
+fi
