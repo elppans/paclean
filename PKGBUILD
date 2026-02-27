@@ -25,14 +25,6 @@ prepare() {
 	pwd
 	cd "${srcdir}/${pkgname}"
 	pwd
-	# Add any preparation steps here, if needed
-	# For example: patch -p1 < "${srcdir}/patch-file.patch"
-}
-
-package() {
-	pwd
-	cd "${srcdir}/${pkgname}"
-	pwd
 
 	# Determine the correct source directory
 	if [ -d "${pkgname}" ]; then
@@ -40,6 +32,15 @@ package() {
 	else
 		srcdir="${srcdir}/${pkgname}"
 	fi
+
+	echo "${pkgname}"
+	echo "${srcdir}"
+
+	# Add any preparation steps here, if needed
+	# For example: patch -p1 < "${srcdir}/patch-file.patch"
+}
+
+package() {
 
 	# Install files
 	local dirs=("usr")
