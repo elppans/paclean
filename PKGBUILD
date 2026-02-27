@@ -23,15 +23,16 @@ sha256sums=('SKIP')
 
 prepare() {
 	pwd
+	if [ -d "${srcdir}/${pkgname}" ]; then
 	cd "${srcdir}/${pkgname}"
-	pwd
-
 	# Determine the correct source directory
 	if [ -d "${pkgname}" ]; then
 		srcdir="${srcdir}/${pkgname}/${pkgname}"
 	else
 		srcdir="${srcdir}/${pkgname}"
 	fi
+	fi
+	pwd
 
 	echo "${pkgname}"
 	echo "${srcdir}"
