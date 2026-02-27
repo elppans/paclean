@@ -16,7 +16,7 @@ sha256sums=('SKIP')
 
 # Automatically detect and use the correct install file
 # if [ -e "${pkgname}.install" ]; then
-	# install=${pkgname}.install
+# install=${pkgname}.install
 # elif [ -e "pkgbuild.install" ]; then
 # 	install=pkgbuild.install
 # fi
@@ -29,13 +29,13 @@ prepare() {
 
 package() {
 	if [ -d "${srcdir}/${pkgname}" ]; then
-	cd "${srcdir}/${pkgname}"
-	# Determine the correct source directory
-	if [ -d "${pkgname}" ]; then
-		srcdir="${srcdir}/${pkgname}/${pkgname}"
-	else
-		srcdir="${srcdir}/${pkgname}"
-	fi
+		cd "${srcdir}/${pkgname}"
+		# Determine the correct source directory
+		if [ -d "${pkgname}" ]; then
+			srcdir="${srcdir}/${pkgname}/${pkgname}"
+		else
+			srcdir="${srcdir}/${pkgname}"
+		fi
 	fi
 
 	# Install files
@@ -78,4 +78,3 @@ package() {
 # END
 # }
 # EOF
-
