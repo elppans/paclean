@@ -23,6 +23,14 @@ sha256sums=('SKIP')
 
 prepare() {
 	pwd
+	cd "${srcdir}/${pkgname}"
+	pwd
+	# Add any preparation steps here, if needed
+	# For example: patch -p1 < "${srcdir}/patch-file.patch"
+}
+
+package() {
+	pwd
 	if [ -d "${srcdir}/${pkgname}" ]; then
 	cd "${srcdir}/${pkgname}"
 	# Determine the correct source directory
@@ -34,20 +42,17 @@ prepare() {
 	fi
 	pwd
 
-	echo "${pkgname}"
-	echo "${srcdir}"
+	echo "pkgname: ${pkgname}"
+	echo "srcdir: ${srcdir}"
 
-	# Add any preparation steps here, if needed
-	# For example: patch -p1 < "${srcdir}/patch-file.patch"
-}
 
-package() {
 
 	# Install files
 	local dirs=("usr")
+	echo "dirs: ${dirs}"
 	for dir in "${dirs[@]}"; do
 		if [ -d "${srcdir}/${dir}" ]; then
-			cp -a "${srcdir}/${dir}" "${pkgdir}/"
+			cp -av "${srcdir}/${dir}" "${pkgdir}/"
 		fi
 	done
 
